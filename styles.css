@@ -1,0 +1,12 @@
+body{
+    font-family: Comfortaa;
+    background-color:lightseagreen;
+}
+
+#content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    text-align:center
+}
