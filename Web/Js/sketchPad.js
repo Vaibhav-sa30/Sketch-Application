@@ -1,5 +1,5 @@
 class SketchPad{
-    constructor(container, size=400){
+    constructor(container, size=500){
         this.canvas = document.createElement("canvas");
         this.canvas.width = size;
         this.canvas.height = size;
@@ -11,6 +11,10 @@ class SketchPad{
         
         //To Draw On this Canvas, we are going to use canvas context to 2D Context
         this.ctx = this.canvas.getContext("2d");
+
+        //define the paths
+        this.path = [];
+        this.isDrawing = false;
 
         //Detect Mouse using a private method (method with hashtag infront are private method)
         this.#addEventListeners();
@@ -32,8 +36,32 @@ class SketchPad{
             ];
             //notice for mouse, we used an array syntax. So rect.left is x cordinate and rect.top is y cordinate
             //because we don't need high precision for the cordinate we add Math.round{} later
-            console.log(mouse);
+            //console.log(mouse);'''
+            
+            //Now, we start debugging
+            this.path = [mouse];
+            this.isDrawing = true;
         }
+        // Now, we'll do same as above but for 'on mouse move'
+        this.canvas.onmousemove = (evt) =>{
+            //we want this only if we are drawing
+            if(this.isDrawing){
+                //first get the rectangle of the canvas bouding area
+                const rect = this.canvas.getBoundingClientRect();
+                //then obtain the mouse coordinates by taking the clientX of the above event minus the left side of the rectangle
+                const mouse = [
+                    Math.round(evt.clientX - rect.left),
+                    Math.round(evt.clientY - rect.top)
+                ];
+                //notice for mouse, we used an array syntax. So rect.left is x cordinate and rect.top is y cordinate
+                //because we don't need high precision for the cordinate we add Math.round{} later
+                //console.log(mouse);'''
+                
+                //Now, we start debugging
+                this.path.push[mouse];
+                console.log(this.path.length);
+            }
+            
     }
 
 
