@@ -27,7 +27,7 @@ class SketchPad{
     #addEventListeners(){
         //we will detect the On mouse down action and we will figure out the coordinates
         this.canvas.onmousedown = (evt) =>{
-            //first get the rectangle of the canvas bouding area
+            //first get the rectangle of the canvas bounding area
             const rect = this.canvas.getBoundingClientRect();
             //then obtain the mouse coordinates by taking the clientX of the above event minus the left side of the rectangle
             const mouse = [
@@ -82,5 +82,10 @@ class SketchPad{
                 console.log(this.path.length);
             }
         }
+        this.canvas.onmouseup = () => {
+            this.isDrawing = false;
+        }
 
-}
+
+
+    }}
