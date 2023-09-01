@@ -67,25 +67,30 @@ class SketchPad{
             //we want this only if we are drawing
             if(this.isDrawing){
                 //first get the rectangle of the canvas bouding area
-                const rect = this.canvas.getBoundingClientRect();
-                //then obtain the mouse coordinates by taking the clientX of the above event minus the left side of the rectangle
-                const mouse = [
-                    Math.round(evt.clientX - rect.left),
-                    Math.round(evt.clientY - rect.top)
-                ];
+                
                 //notice for mouse, we used an array syntax. So rect.left is x cordinate and rect.top is y cordinate
                 //because we don't need high precision for the cordinate we add Math.round{} later
                 //console.log(mouse);'''
-                
+                const mouse = this.#getMouse(evt);
                 //Now, we start debugging
                 this.path.push[mouse];
                 console.log(this.path.length);
             }
         }
-        this.canvas.onmouseup = () => {
+        this.canvas.onmouseup = (evt) => {
             this.isDrawing = false;
         }
 
 
 
-    }}
+    }
+
+    #getMouse = (evt) => {
+        const rect = this.canvas.getBoundingClientRect();
+                //then obtain the mouse coordinates by taking the clientX of the above event minus the left side of the rectangle
+        reurn[
+            Math.round(evt.clientX - rect.left),
+            Math.round(evt.clientY - rect.top)
+        ];
+    }
+}
